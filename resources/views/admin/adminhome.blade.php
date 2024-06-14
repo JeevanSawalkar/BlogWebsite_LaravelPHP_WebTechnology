@@ -158,10 +158,6 @@
               </div>
             </div>
             <!-- Megamenu end     -->
-            <!-- Languages dropdown    -->
-            <div class="list-inline-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="admincss/img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
-              <div aria-labelledby="languages" class="dropdown-menu"><a rel="nofollow" href="#" class="dropdown-item"> <img src="admincss/img/flags/16/DE.png" alt="English" class="mr-2"><span>German</span></a><a rel="nofollow" href="#" class="dropdown-item"> <img src="admincss/img/flags/16/FR.png" alt="English" class="mr-2"><span>French  </span></a></div>
-            </div>
             <!-- Log out               -->
             <div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link">Logout <i class="icon-logout"></i></a></div>
           </div>
@@ -183,7 +179,7 @@
         <ul class="list-unstyled">
                 <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="{{ url('post_page') }}"> <i class="icon-grid"></i>Add Post </a></li>
-                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                <li><a href="{{ url('/show_post') }}"> <i class="fa fa-bar-chart"></i>Show Posts</a></li>
                 <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

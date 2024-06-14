@@ -179,7 +179,7 @@
         <ul class="list-unstyled">
                 <li><a href="index.html"> <i class="icon-home"></i>Home </a></li>
                 <li class="active"><a href="{{ url('post_page') }}"> <i class="icon-grid"></i>Add Post </a></li>
-                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Show Posts</a></li>
+                <li><a href="{{ url('/show_post') }}"> <i class="fa fa-bar-chart"></i>Show Posts</a></li>
                 <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -199,30 +199,55 @@
       <!-- Sidebar Navigation end-->
         <div class="page-content">
             @if(session()->has('message'))
-            <div class="alert alert-success">
+            <div class="alert alert-danger">
                 {{ session()->get('message') }}
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             </div>
             @endif
 
             <h1 class="m-4 display-4 text-left">Add Post</h1>
-            <form class="m-4" action="{{ url('add_post') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Post Title</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="" name="title">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Post Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Add Image</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
-                </div>
+            <table class="m-4 table">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">By</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">User Type</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                @foreach($post as $post)
+                <tbody>
+                    <tr>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->description }}</td>
+                        <td>{{ $post->name }}</td>
+                        <td>{{ $post->post_status }}</td>
+                        <td>{{ $post->user_type }}</td>
+                        <td>
+                            <img style="
+                            height: 100px;
+                            width: 200px;
+                        " 
+                        src="postimage/{{ $post->image }}" alt="">
+                        </td>
+                        {{-- <td>{{ $post->image }}</td> --}}
 
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+                        <td><a 
+                            class="btn btn-danger" 
+                            href="{{ url('delete_post',$post->id) }}"
+                            onclick="return confirm('Delete this post?')"
+                            >Delete
+                        </a></td>
+
+                    </tr>
+                @endforeach
+
+
+                </tbody>
+              </table>
 
 
 
