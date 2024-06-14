@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head> 
+
+    {{-- Show Alert CDN --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dark Bootstrap Admin </title>
+    <title>Admin - Posts</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -205,7 +209,7 @@
             </div>
             @endif
 
-            <h1 class="m-4 display-4 text-left">Add Post</h1>
+            <h1 class="m-4 display-4 text-left">Posts</h1>
             <table class="m-4 table">
                 <thead>
                   <tr>
@@ -216,6 +220,7 @@
                     <th scope="col">User Type</th>
                     <th scope="col">Image</th>
                     <th scope="col">Delete</th>
+                    <th scope="col">Edit</th>
                   </tr>
                 </thead>
                 @foreach($post as $post)
@@ -235,12 +240,21 @@
                         </td>
                         {{-- <td>{{ $post->image }}</td> --}}
 
+                        {{-- Delete --}}
                         <td><a 
                             class="btn btn-danger" 
                             href="{{ url('delete_post',$post->id) }}"
-                            onclick="return confirm('Delete this post?')"
+                            onclick="confirmation(event)"
                             >Delete
                         </a></td>
+
+                        {{-- Edit --}}
+                        <td><a 
+                            class="btn btn-warning" 
+                            href="{{ url('edit_page',$post->id) }}"
+                            >Edit
+                        </a></td>
+
 
                     </tr>
                 @endforeach
@@ -277,5 +291,26 @@
     <script src="admincss/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="admincss/js/charts-home.js"></script>
     <script src="admincss/js/front.js"></script>
+    <script type="text/javascript">
+    function confirmation(ev)
+    {
+        ev.preventDefault();
+        var urlToRedirect=ev.currentTarget.getAttribute('href');
+        console.log(urlToRedirect);
+        swal({
+            title:"Delete Post?",
+            text:"You won't be able to revert this delete",
+            icon:"warning",
+            buttons:true,
+            dangerMode:true,
+        })
+        .then((willCancel)=>{
+            if(willCancel)
+            {
+                window.location.href=urlToRedirect;
+            }
+        });   
+    }
+    </script>
   </body>
 </html>
