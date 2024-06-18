@@ -4,13 +4,8 @@ PHP | MYSQL | LARAVEL
 
 ## Screenshots:
 ### 
+![image](https://github.com/JeevanSawalkar/BlogWebsite_LaravelPHP_WebTechnology/assets/54221345/df53f3e7-ac5c-4ade-a4fc-5dde90f28769)
 
-
-
-![alt text](https://jeevansawalkar.github.io/imjeevansawalkar.github.io/DesktopView.jpg)
-
-### Mobile View
-![alt text](https://jeevansawalkar.github.io/imjeevansawalkar.github.io/MobileView.jpg)
 
 ## Author
 * Jeevan Ashok Sawalkar (https://www.linkedin.com/in/jeevan-ashok-sawalkar/)
