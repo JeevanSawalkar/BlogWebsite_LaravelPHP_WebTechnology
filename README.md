@@ -8,7 +8,7 @@ PHP | MYSQL | LARAVEL
 
 ### Admin - Blog permissions
 ![image](https://github.com/JeevanSawalkar/BlogWebsite_LaravelPHP_WebTechnology/assets/54221345/123c5baf-b977-428f-ba89-d35d82268d34)
-
+***
 ### Home Page
 ![image](https://github.com/JeevanSawalkar/BlogWebsite_LaravelPHP_WebTechnology/assets/54221345/dc0931e3-22c5-4e86-acd6-6a9b655131ab)
 
@@ -18,7 +18,7 @@ PHP | MYSQL | LARAVEL
 ###Login – Admin/User
 ![image](https://github.com/JeevanSawalkar/BlogWebsite_LaravelPHP_WebTechnology/assets/54221345/b83de21d-405e-4410-befb-5188a0d6a552)
 
-
+***
 ### Blogs for user
 
 ![image](https://github.com/JeevanSawalkar/BlogWebsite_LaravelPHP_WebTechnology/assets/54221345/e7f1dfa8-68a0-4cb2-8b5a-f2073be7e21d)
