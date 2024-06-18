@@ -1,8 +1,12 @@
-# Portfolio
-My website portfolio
+ # Blog Website | CRUD : using Laravel framework
+This blog website is built using the Laravel MVC framework, featuring Breeze for both admin and user authentication. It includes full CRUD functionality for users and administrators, ensuring a seamless content management experience.
+PHP | MYSQL | LARAVEL 
 
 ## Screenshots:
-### Computer View
+### 
+
+
+
 ![alt text](https://jeevansawalkar.github.io/imjeevansawalkar.github.io/DesktopView.jpg)
 
 ### Mobile View
