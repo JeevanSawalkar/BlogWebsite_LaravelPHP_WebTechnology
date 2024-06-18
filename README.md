@@ -15,7 +15,7 @@ PHP | MYSQL | LARAVEL
 ### Register
 ![image](https://github.com/JeevanSawalkar/BlogWebsite_LaravelPHP_WebTechnology/assets/54221345/c396fbde-66a3-41c6-9086-b8865ae2bfa1)
 
-###Login – Admin/User
+### Login – Admin/User
 ![image](https://github.com/JeevanSawalkar/BlogWebsite_LaravelPHP_WebTechnology/assets/54221345/b83de21d-405e-4410-befb-5188a0d6a552)
 
 ***
@@ -32,7 +32,6 @@ PHP | MYSQL | LARAVEL
 
 ### User – Edit/Delete post
 ![image](https://github.com/JeevanSawalkar/BlogWebsite_LaravelPHP_WebTechnology/assets/54221345/4633c9e6-c112-40e5-a2ff-c6535595d6e5)
-
 
 
 ## Author
