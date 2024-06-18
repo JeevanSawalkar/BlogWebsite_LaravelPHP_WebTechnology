@@ -2,6 +2,32 @@
 <html lang="en">
    <head>
         @include('home.homecss')
+        {{-- For carousel posts --}}
+        <style>
+         .carousel-item {
+             display: flex;
+             justify-content: center;
+         }
+         
+         .services_img {
+             max-width: 100%;
+             height: auto;
+         }
+         
+         .carousel-control-prev-icon,
+         .carousel-control-next-icon {
+             background-color: black;
+             border-radius: 50%;
+         }
+     </style>
+   <!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+     
    </head>
    <body>
       <!-- header section start -->
@@ -41,10 +67,11 @@
                      <li class="active"><a href="index.html">Home</a></li>
                      <li><a href="about.html">About</a></li>
                      <li><a href="services.html">Services</a></li>
-                     <li><a href="blog.html">Blog</a></li>
                       @if (Route::has('login'))
                      @auth
-                     <li><a href="{{ route('home') }}">home</a></li>
+                     <li><a href="{{ route('home') }}"> home</a></li>
+                     <li><a href="{{ url('create_post') }}">Create Post</a></li>
+                     <li><a href="{{ url('my_post') }}">My Posts</a></li>
                  @else
                      <li><a href="{{ route('login') }}">Login</a></li>
                      <li><a href="{{ route('register') }}">Register</a></li>
@@ -93,29 +120,48 @@
          <!-- banner section end -->
       </div>
       <!-- header section end -->
-      <!-- services section start -->
-      <div class="services_section layout_padding">
-         <div class="container">
-            <h1 class="services_taital">Services </h1>
-            <p class="services_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</p>
-            <div class="services_section_2">
-               <div class="row">
-                  <div class="col-md-4">
-                     <div><img src="images/img-1.png" class="services_img"></div>
-                     <div class="btn_main"><a href="#">Rafting</a></div>
+
+                   <!-- services section start -->
+    <div class="services_section layout_padding">
+      <div class="container">
+          <h1 class="services_taital">Services</h1>
+          <p class="services_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</p>
+          <div class="services_section_2">
+              <div id="postCarousel" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                      @foreach($post->chunk(3) as $chunk)
+                          <div class="carousel-item @if ($loop->first) active @endif">
+                              <div class="row">
+                                  @foreach($chunk as $postItem)
+                                      <div class="col-md-4">
+                                          <div>
+                                              <img style="height: 179px; width: 400px;" src="/postimage/{{ $postItem->image }}" class="services_img">
+                                          </div>
+                                          <h4>{{ $postItem->title }}</h4>
+                                          <p>Post by <b>{{ $postItem->user_type }}</b></p>
+                                          <div class="btn_main">
+                                              <a href="{{ url('post_details', $postItem->id) }}">Read more...</a>
+                                          </div>
+                                      </div>
+                                  @endforeach
+                              </div>
+                          </div>
+                      @endforeach
                   </div>
-                  <div class="col-md-4">
-                     <div><img src="images/img-2.png" class="services_img"></div>
-                     <div class="btn_main active"><a href="#">Hiking</a></div>
-                  </div>
-                  <div class="col-md-4">
-                     <div><img src="images/img-3.png" class="services_img"></div>
-                     <div class="btn_main"><a href="#">Camping</a></div>
-                  </div>
-               </div>
-            </div>
-         </div>
+                  <!-- Controls -->
+                  <a class="carousel-control-prev" href="#postCarousel" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#postCarousel" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                  </a>
+              </div>
+          </div>
       </div>
+  </div>
+
       <!-- services section end -->
       <!-- about section start -->
       <div class="about_section layout_padding">

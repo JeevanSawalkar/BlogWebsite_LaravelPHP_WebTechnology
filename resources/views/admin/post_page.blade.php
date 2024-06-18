@@ -3,7 +3,7 @@
   <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dark Bootstrap Admin </title>
+    <title>Admin-Add Post</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -205,7 +205,7 @@
             </div>
             @endif
 
-            <h1 class="m-4 display-4 text-left">Add Post</h1>
+            <h1 class="m-4 display-4 text-left">Admin-Add Post</h1>
             <form class="m-4" action="{{ url('add_post') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

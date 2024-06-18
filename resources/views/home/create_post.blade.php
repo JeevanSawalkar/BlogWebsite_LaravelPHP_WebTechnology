@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head> 
-
-    {{-- Show Alert CDN --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin - Posts</title>
+    <title>User-Add Post</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -30,6 +26,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
+    @include('sweetalert::alert')
     <header class="header">   
       <nav class="navbar navbar-expand-lg">
         <div class="search-panel">
@@ -183,7 +180,7 @@
         <ul class="list-unstyled">
                 <li><a href="index.html"> <i class="icon-home"></i>Home </a></li>
                 <li class="active"><a href="{{ url('post_page') }}"> <i class="icon-grid"></i>Add Post </a></li>
-                <li><a href="{{ url('/show_post') }}"> <i class="fa fa-bar-chart"></i>Show Posts</a></li>
+                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Show Posts</a></li>
                 <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -203,76 +200,30 @@
       <!-- Sidebar Navigation end-->
         <div class="page-content">
             @if(session()->has('message'))
-            <div class="alert alert-danger">
+            <div class="alert alert-success">
                 {{ session()->get('message') }}
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             </div>
             @endif
 
-            <h1 class="m-4 display-4 text-left">Posts</h1>
-            <table class="m-4 table" style="
-            width: 98%;
-        ">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">By</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">User Type</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Delete</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Accept</th>
-                    <th scope="col">Reject</th>
-                  </tr>
-                </thead>
-                @foreach($post as $post)
-                <tbody>
-                    <tr>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->description }}</td>
-                        <td>{{ $post->name }}</td>
-                        <td>{{ $post->post_status }}</td>
-                        <td>{{ $post->user_type }}</td>
-                        <td>
-                            <img style="
-                            height: 100px;
-                            width: 200px;
-                        " 
-                        src="postimage/{{ $post->image }}" alt="">
-                        </td>
-                        {{-- <td>{{ $post->image }}</td> --}}
+            <h1 class="m-4 display-4 text-left">User-Add Post</h1>
+            <form class="m-4" action="{{ url('user_post') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Post Title</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Post Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Add Image</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+                </div>
 
-                        {{-- Delete --}}
-                        <td><a 
-                            class="btn btn-danger" 
-                            href="{{ url('delete_post',$post->id) }}"
-                            onclick="confirmation(event)"
-                            >Delete
-                        </a></td>
-
-                        {{-- Edit --}}
-                        <td><a 
-                            class="btn btn-warning" 
-                            href="{{ url('edit_page',$post->id) }}"
-                            >Edit
-                        </a></td>
-
-                        <td>
-                          <a href="{{ url('accept_post',$post->id) }}" class="btn btn-success" >Accept</a>
-                        </td>
-
-                        <td>
-                          <a href="{{ url('reject_post',$post->id) }}" class="btn btn-danger" >Reject</a>
-                        </td>
-                        
-                    </tr>
-                @endforeach
-
-
-                </tbody>
-              </table>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
 
 
 
@@ -302,26 +253,5 @@
     <script src="admincss/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="admincss/js/charts-home.js"></script>
     <script src="admincss/js/front.js"></script>
-    <script type="text/javascript">
-    function confirmation(ev)
-    {
-        ev.preventDefault();
-        var urlToRedirect=ev.currentTarget.getAttribute('href');
-        console.log(urlToRedirect);
-        swal({
-            title:"Delete Post?",
-            text:"You won't be able to revert this delete",
-            icon:"warning",
-            buttons:true,
-            dangerMode:true,
-        })
-        .then((willCancel)=>{
-            if(willCancel)
-            {
-                window.location.href=urlToRedirect;
-            }
-        });   
-    }
-    </script>
   </body>
 </html>
